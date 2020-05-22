@@ -14,7 +14,7 @@ import springfox.documentation.swagger2.annotations.EnableSwagger2;
 @Configuration
 public class SwaggerConfig {
 
-    public static final String API_TITLE = "Api for keypad combinations generation";
+    private static final String API_TITLE = "Api for keypad combinationsList generation";
     @Value("${api.version:v1}")
     private String apiVersion;
 

@@ -10,8 +10,6 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @Api
 @RestController
 @RequestMapping(value = "keypad/v1/generator", produces = MediaType.APPLICATION_JSON_VALUE)
@@ -21,11 +19,10 @@ public class KeypadCombinationsController {
     private final KeyPadCombinationService keyPadCombinationService;
 
     @GetMapping("phone/{input}")
-    @ApiOperation("")
+    @ApiOperation("get all possible combinationsList paginated")
     public ResponseEntity<Combinations> getCombinations(@PathVariable @Validate String input,
-                                                        @RequestParam int pageNum, @RequestParam int pageOffSet,
-                                                        @RequestParam int pageSize){
-        final List<String> combinations = keyPadCombinationService.generateKeyPadCombinations(input);
-        return ResponseEntity.ok(new Combinations(combinations, pageOffSet));
+                                                        @RequestParam int pageOffSet,
+                                                        @RequestParam int pageSize) {
+        return ResponseEntity.ok(keyPadCombinationService.generateKeyPadCombinations(input, pageOffSet, pageSize));
     }
 }

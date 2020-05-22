@@ -19,10 +19,7 @@ public class InvalidInputAspect {
 
     @Before("execution(* * (@com.cathy.challenge.keypadcombination.annotations.Validate (*),..)) && args(input,..))")
     public void validate(String input) {
-        if (StringUtils.isEmpty(input)) {
-            return;
-        }
-        if(input.length() < minSize || input.length() > maxSize){
+        if(StringUtils.isEmpty(input) || input.length() < minSize || input.length() > maxSize){
             throw new InvalidInputSizeException();
         }
         try {

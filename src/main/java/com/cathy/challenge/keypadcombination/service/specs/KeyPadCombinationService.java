@@ -1,7 +1,8 @@
 package com.cathy.challenge.keypadcombination.service.specs;
 
-import java.util.List;
+import com.cathy.challenge.keypadcombination.models.Combinations;
 
 public interface KeyPadCombinationService {
-    List<String> generateKeyPadCombinations(String input);
+
+    Combinations generateKeyPadCombinations(String input, int pageOffSet, int pageSize);
 }

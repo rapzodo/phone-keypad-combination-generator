@@ -26,9 +26,18 @@ public class keypadCombinationServiceTest {
     }
 
     @Test
-    public void shouldReturnEmptyListForOneOrZero(){
+    public void shouldReturnZeroAndOneAsCombinations(){
         String input = "01";
-        assertThat(service.generateKeyPadCombinations(input, 0, 10).getCombinationsList()).isEmpty();
+        assertThat(service.generateKeyPadCombinations(input, 0, 10)
+                .getCombinationsList()).hasSameElementsAs(ImmutableList.of("01"));
+    }
+
+    @Test
+    public void shouldReturnEmptyListForOneOrZeroBla() {
+        String input = "0123";
+        final ImmutableList<String> expectedCombinations = ImmutableList.of("01ad", "01ae");
+        assertThat(service.generateKeyPadCombinations(input, 0, 2)
+                .getCombinationsList()).hasSameElementsAs(expectedCombinations);
     }
 
     /**For interview purposes I wont validate all the digits, but in real world we should certainly validate all entries**/
@@ -48,6 +57,7 @@ public class keypadCombinationServiceTest {
         final ImmutableList<String> expectedCombinations = ImmutableList.of("ae", "af", "bd", "be", "bf");
         Combinations combinations = service.generateKeyPadCombinations(input, 1,5);
         assertThat(combinations.getCombinationsList()).hasSameElementsAs(expectedCombinations);
+        assertThat(combinations.getPageOffset()).isEqualTo(6);
         assertThat(combinations.getTotalNumberOfCombinations()).isEqualTo(9);
         assertThat(combinations.getCombinationsPerPage()).isEqualTo(5);
         assertThat(combinations.getCombinationsList()).hasSize(5);

@@ -6,7 +6,6 @@ import com.google.common.collect.ImmutableList;
 import com.google.common.collect.ImmutableMap;
 import org.springframework.stereotype.Service;
 import org.springframework.util.ConcurrentReferenceHashMap;
-import org.springframework.util.StringUtils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,6 +18,8 @@ public class DefaultKeyPadCombinationService implements KeyPadCombinationService
     private static Map<String, List<String>> combinationCache = new ConcurrentReferenceHashMap<>();
 
     private static final Map<Character, List<String>> KEYPAD = ImmutableMap.<Character, List<String>>builder()
+            .put('0', ImmutableList.of("0"))
+            .put('1', ImmutableList.of("1"))
             .put('2', ImmutableList.of("a", "b", "c"))
             .put('3', ImmutableList.of("d", "e", "f"))
             .put('4', ImmutableList.of("g", "h", "i"))
@@ -36,7 +37,7 @@ public class DefaultKeyPadCombinationService implements KeyPadCombinationService
         return Combinations.builder()
                 .originalInput(input)
                 .combinationsList(pageSize > combinationsList.size() ? combinationsList : combinationsList.subList(pageOffSet, pageOffSet + pageSize) )
-                .pageOffset(pageOffSet)
+                .pageOffset(pageOffSet+pageSize)
                 .combinationsPerPage(pageSize)
                 .totalNumberOfCombinations(combinationsList.size())
                 .build();
@@ -44,9 +45,6 @@ public class DefaultKeyPadCombinationService implements KeyPadCombinationService
 
     private List<String> generateNotCachedCombinations(String input) {
         List<String> result = new ArrayList<>();
-        if (StringUtils.isEmpty(input)) {
-            return Collections.emptyList();
-        }
         final StringBuilder combinationsPlaceHolder = new StringBuilder();
         aggregateCombinations(input, combinationsPlaceHolder, result);
         return result;

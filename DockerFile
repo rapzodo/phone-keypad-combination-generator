@@ -1,0 +1,4 @@
+FROM openjdk:8-jdk-alpine
+COPY /target/phone-keypad-combination-generator-0.0.1-SNAPSHOT.jar phone-keypad-combination-generator-0.0.1-SNAPSHOT.jar
+ENTRYPOINT ["java", "-jar","phone-keypad-combination-generator-0.0.1-SNAPSHOT.jar"]
+EXPOSE 8081

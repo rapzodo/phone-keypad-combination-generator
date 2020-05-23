@@ -27,3 +27,6 @@ build application as maven : mvn install
 build docker image
 docker image build -t keypad-combinations .
 Launch image - docker run -d --rm -p 8081:8081 keypad-combinations:latest
+
+The Service is also deployed on AWS ECS cluster under Application Load balancer on 2 AZs:
+http://keypad-combinations-lb-162994211.us-west-2.elb.amazonaws.com/swagger-ui.html

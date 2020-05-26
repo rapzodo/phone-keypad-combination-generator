@@ -30,3 +30,7 @@ Launch image - docker run -d --rm -p 8081:8081 keypad-combinations:latest
 
 The Service is also deployed on AWS ECS cluster under Application Load balancer on 2 AZs:
 http://keypad-combinations-lb-162994211.us-west-2.elb.amazonaws.com/swagger-ui.html
+
+AWS service exposed through APIGateway calling the ECS service as HTTP integration type
+https://8jnva77966.execute-api.us-west-2.amazonaws.com/dev/keypad-phone-combinations/{phoneDigits}
+PS: the ECS has loadbalancer in front of the cluster service, so I know this is not the best design but it is just for demo purposes.

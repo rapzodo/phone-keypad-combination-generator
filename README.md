@@ -32,4 +32,4 @@ The Service is also deployed on AWS ECS cluster under Application Load balancer 
 http://keypad-combinations-lb-162994211.us-west-2.elb.amazonaws.com/swagger-ui.html
 
 AWS service exposed through APIGateway calling the ECS service as HTTP integration type
-https://8jnva77966.execute-api.us-west-2.amazonaws.com/dev/keypad-phone-combinations/{phoneDigits}
+https://8jnva77966.execute-api.us-west-2.amazonaws.com/dev/keypad-phone-combinations/2345666?pageOffSet=0&pageSize=5
